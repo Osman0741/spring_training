@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class AppConfigData {
 
-    @Value("${username}")
+    @Value("${userName}")
     private String userName;
 
     @Value("${password}")
