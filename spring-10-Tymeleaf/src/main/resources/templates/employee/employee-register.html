@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cydeo</title>
+</head>
+<body>
+<div align="center">
+<h2 >Employee Registration</h2>
+
+<form th:action="@{/employee/confirm}" method="post" th:object="${employee}">
+
+  <label>First Name:</label>
+  <input type="text" th:field="*{firstName}"><br>
+
+  <label>Last Name:</label>
+  <input type="text" th:field="*{lastName}"><br>
+
+  <label>Email:</label>
+  <input type="email" th:field="*{email}"><br>
+
+
+
+  <label>Gender:</label>
+  <input type="radio" value="Male" th:field="*{gender}">Male
+  <input type="radio" value="Female" th:field="*{gender}">Female <br>
+
+  <label>Time</label>
+  <select th:field="*{time}">
+    <option th:each="theTime : ${timeList}"  th:value="${theTime}" th:text="${theTime}"></option>
+  </select> <br>
+
+  <label>Company</label>
+  <textarea th:field="*{company}"></textarea> <br>
+
+  <button type="submit">Register</button>
+
+
+
+</form>
+</div>
+</body>
+</html>
