@@ -29,8 +29,7 @@ public class MovieCinema extends BaseEntity {
     public String toString() {
         return "MovieCinema{" +
                 "dateTime=" + dateTime +
-                ", movie=" + movie +
-                ", cinema=" + cinema +
+
                 '}';
     }
 }

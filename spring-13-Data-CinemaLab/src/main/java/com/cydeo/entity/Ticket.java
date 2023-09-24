@@ -23,7 +23,7 @@ public class Ticket extends BaseEntity {
     private LocalDateTime dateTime;
     @ManyToOne(fetch = FetchType.LAZY)
     private MovieCinema movieCinema;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User userAccount;
 
 
@@ -33,8 +33,7 @@ public class Ticket extends BaseEntity {
                 "seatNumber=" + seatNumber +
                 ", rowNumber=" + rowNumber +
                 ", dateTime=" + dateTime +
-                ", movieCinema=" + movieCinema +
-                ", userAccount=" + userAccount +
+
                 '}';
     }
 }

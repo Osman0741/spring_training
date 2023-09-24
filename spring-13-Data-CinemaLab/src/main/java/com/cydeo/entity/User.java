@@ -28,7 +28,7 @@ public class User extends BaseEntity {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
-                ", account=" + account +
+
                 '}';
     }
 }
