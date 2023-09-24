@@ -31,7 +31,7 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema,Long> {
      List<MovieCinema> findFirst3ByOrderByMoviePriceDesc();
 
     //Write a derived query to list all movie cinemas that contain a specific movie name
-    List<MovieCinema> findAllByMovieNameContaining(String name);
+    List<MovieCinema> findAllByMovie_NameContaining(String name);
 
     //Write a derived query to list all movie cinemas in a specific location name
      List<MovieCinema> findAllByCinema_Location_Name(String name);

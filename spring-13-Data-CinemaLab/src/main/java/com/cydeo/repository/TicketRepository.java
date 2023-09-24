@@ -16,13 +16,13 @@ public interface TicketRepository extends JpaRepository<Ticket,Long> {
     // ------------------- DERIVED QUERIES ------------------- //
 
     //Write a derived query to count how many tickets a user bought
-      Integer countAllByUserAccountId(Long userId);
+      Integer countAllByUserAccount_Id(Long userId);
 
     //Write a derived query to list all tickets by specific email
-     List<Ticket> findAllByUserAccountEmail(String email);
+     List<Ticket> findAllByUserAccount_Email(String email);
 
     //Write a derived query to count how many tickets are sold for a specific movie
-     Integer countAllByMovieCinema_MovieName(String name);
+     Integer countAllByMovieCinema_Movie_Name(String name);
 
     //Write a derived query to list all tickets between a range of dates
      List<Ticket> findAllByDateTimeBetween(LocalDateTime date1, LocalDateTime date2);
