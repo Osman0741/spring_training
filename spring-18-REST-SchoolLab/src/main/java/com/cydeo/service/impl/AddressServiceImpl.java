@@ -1,8 +1,10 @@
 package com.cydeo.service.impl;
 
 
+import com.cydeo.client.WeatherApiClient;
 import com.cydeo.dto.AddressDTO;
 
+import com.cydeo.dto.WeatherDTO;
 import com.cydeo.entity.Address;
 import com.cydeo.repository.AddressRepository;
 import com.cydeo.service.AddressService;
@@ -19,15 +21,16 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
     private final MapperUtil mapperUtil;
+    private final WeatherApiClient weatherApiClient;
 
 
-//    @Value("${access_key}")
-//    private String access_key;
+    @Value("${access_key}")
+    private String access_key;
 
-    public AddressServiceImpl(AddressRepository addressRepository, MapperUtil mapperUtil) {
+    public AddressServiceImpl(AddressRepository addressRepository, MapperUtil mapperUtil, WeatherApiClient weatherApiClient) {
         this.addressRepository = addressRepository;
         this.mapperUtil = mapperUtil;
-
+        this.weatherApiClient = weatherApiClient;
     }
 
     @Override
@@ -44,10 +47,10 @@ public class AddressServiceImpl implements AddressService {
         Address foundAddress = addressRepository.findById(id)
                 .orElseThrow(() -> new Exception("No Address Found!"));
 
-//        AddressDTO addressDTO = mapperUtil.convert(foundAddress, new AddressDTO());
-//        addressDTO.setCurrentTemperature(getCurrentWeather(addressDTO.getCity()).getCurrent().getTemperature());
+        AddressDTO addressDTO = mapperUtil.convert(foundAddress, new AddressDTO());
+        addressDTO.setCurrentTemperature(getCurrentWeather(addressDTO.getCity()).getCurrent().getTemperature());
 
-        return mapperUtil.convert(foundAddress , new AddressDTO());
+        return addressDTO;
 
     }
 
@@ -61,10 +64,10 @@ public class AddressServiceImpl implements AddressService {
 
         addressRepository.save(addressToSave);
 
-//        AddressDTO updatedAddress = mapperUtil.convert(addressToSave, new AddressDTO());
-//        updatedAddress.setCurrentTemperature(getCurrentWeather(updatedAddress.getCity()).getCurrent().getTemperature());
+        AddressDTO updatedAddress = mapperUtil.convert(addressToSave, new AddressDTO());
+        updatedAddress.setCurrentTemperature(getCurrentWeather(updatedAddress.getCity()).getCurrent().getTemperature());
 
-        return mapperUtil.convert(addressToSave , new AddressDTO());
+        return updatedAddress;
 
     }
 
@@ -84,8 +87,8 @@ public class AddressServiceImpl implements AddressService {
         return mapperUtil.convert(addressToSave, new AddressDTO());
 
     }
-//    private WeatherDTO getCurrentWeather(String city) {
-//        return weatherApiClient.getCurrentWeather(access_key, city);
-//    }
+    private WeatherDTO getCurrentWeather(String city) {
+        return weatherApiClient.getCurrentWeather(access_key, city);
+    }
 
 }
