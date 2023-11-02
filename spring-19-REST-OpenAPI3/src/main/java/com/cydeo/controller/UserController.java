@@ -39,7 +39,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @PostMapping
+    @PostMapping(consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+                 produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Create an user")
     @ApiResponse(responseCode = "201", description = "User created successfully (CREATED)",
             content = {@Content(mediaType = "application/xml"), @Content(mediaType = "application/json")},
